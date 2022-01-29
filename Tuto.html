@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Untitled</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>Tuto</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14574,9 +14574,17 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id='top'></a></p>
-<h1 id="Intro-to-CDlib:-Community-Discovery-library"><em>Intro to CDlib: Community Discovery library</em><a class="anchor-link" href="#Intro-to-CDlib:-Community-Discovery-library">&#182;</a></h1><p><code>CDlib</code> is a python library designed to provide support the extraction and analysis of network clusterings.</p>
-<p>In this notebook are introduced some of the main features of the library and an overview of its functionalities.</p>
-<p><strong>Note:</strong> this notebook is purposely not 100% comprehensive, it only discusses the basic things you need to get started. For all the details, algorithm/methods/evaluation facilities available, please refer to the official <a href="https://cdlib.readthedocs.io">documentation</a>.</p>
+<h1><center> <em>Community Detection: CDlib</em></h1>
+<p>By :</p>
+<ul>
+<li>ASRI Mohamed Amin </li>
+<li>BOUBKER Ayoub</li>
+<li>CHBAB Khalid</li>
+<li>DRIOUCHE Adnane</li>
+<li>OUHMAID Khalid</li>
+</ul>
+<p><code>CDlib</code> est une bibliothèque python conçue pour fournir un support à l'extraction et à l'analyse des regroupements de réseaux.</p>
+<p>Dans ce notebook, nous allons présenter certaines des principales caractéristiques de la bibliothèque et un aperçu de ses fonctionnalités.</p>
 
 </div>
 </div>
@@ -14588,17 +14596,17 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="Table-of-Contents">Table of Contents<a class="anchor-link" href="#Table-of-Contents">&#182;</a></h2><ol>
-<li><a href="#install">Installing CDlib</a></li>
+<h2 id="Sommaire">Sommaire<a class="anchor-link" href="#Sommaire">&#182;</a></h2><ol>
+<li><a href="#install">Installation de CDlib</a></li>
 <li><a href="#workflow">Community Discovery Workflow</a><ol>
-<li><a href="#graph">Graph Creation</a></li>
-<li><a href="#model">Community Discovery algorithm(s) selection and configuration </a></li>
-<li><a href="#fitness">Clustering Evaluation (Fitness functions)</a></li>
-<li><a href="#comparison">Clustering Evaluation (Comparison)</a></li>
-<li><a href="#visualization">Community/Statistics Visualization</a></li>
+<li><a href="#graph">Création des graphes</a></li>
+<li><a href="#model">Algorithme(s) du Community Discovery: choix et configuration </a></li>
+<li><a href="#fitness">Évaluation du Clustering (Fitness functions)</a></li>
+<li><a href="#comparison">Évaluation du Clustering (Comparaison)</a></li>
+<li><a href="#visualization">Visualisation du Communauté/Statistiques</a></li>
 </ol>
 </li>
-<li><a href="#advanced">Advanced facilities: Pooling and Optimization</a><ol>
+<li><a href="#advanced">Installations avancées: Pooling et Optimization</a> <ol>
 <li><a href="#pooling">Pooling</a></li>
 <li><a href="#optimization">Optimization</a></li>
 </ol>
@@ -14617,7 +14625,7 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id='install'></a></p>
-<h2 id="1.-Installing-CDlib-(to-top)">1. Installing CDlib (<a href="#top">to top</a>)<a class="anchor-link" href="#1.-Installing-CDlib-(to-top)">&#182;</a></h2>
+<h2 id="1.-Installation-de-CDlib-%F0%9F%94%BC">1. Installation de CDlib <a href="#top">&#128316;</a><a class="anchor-link" href="#1.-Installation-de-CDlib-%F0%9F%94%BC">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -14628,29 +14636,25 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>As a first step, we need to make sure that <code>CDlib</code> is installed and working.</p>
-<p>The library is available for python 3.7, and its stable version can be installed using <code>pip</code>:</p>
+<p>Dans un premier temps, nous devons nous assurer que <code>CDlib</code> est installé et fonctionne.</p>
+<p>La bibliothèque est disponible pour python&gt;=3.8, et sa version stable peut être installée en utilisant <code>pip</code>:</p>
 
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>pip install cdlib
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cdlib</span>
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<p>nous avons aussi installer <code>networkx</code>.</p>
 
 </div>
+</div>
+</div>
+</div>pip install networkx
 <div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -14658,16 +14662,15 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id='workflow'></a></p>
-<h2 id="2.-Community-Discovery-Workflow-(to-top)">2. Community Discovery Workflow (<a href="#top">to top</a>)<a class="anchor-link" href="#2.-Community-Discovery-Workflow-(to-top)">&#182;</a></h2><p><code>CDlib</code> allows to extract, analyze and compare network clustering applying several approaches.
-The standard workflow can be summarized as:</p>
+<h2 id="2.-Community-Discovery-Workflow-%F0%9F%94%BC">2. Community Discovery Workflow <a href="#top">&#128316;</a><a class="anchor-link" href="#2.-Community-Discovery-Workflow-%F0%9F%94%BC">&#182;</a></h2><p><code>CDlib</code> permet d'extraire, d'analyser et de comparer les regroupements de réseaux en appliquant plusieurs approches. Workflow peut être résumé comme suit :</p>
 <ul>
-<li>Network Creation</li>
+<li>Création des graphes</li>
 <li>Community Discovery algorithm(s) selection and configuration</li>
-<li>Clustering(s) evaluation (Fitness functions)</li>
-<li>Clustering(s) evaluation (Comparisons)</li>
-<li>Community/Statistics Visualization</li>
+<li>Évaluation du Clustering (Fitness functions)</li>
+<li>Évaluation du Clustering (Comparaison)</li>
+<li>Visualisation du Communauté/Statistiques</li>
 </ul>
-<p>In this section we will observe how to templating such workflow applying two classic network clustering algorithms: Label Propagation and Leiden.</p>
+<p>Dans cette section, nous allons observer comment modéliser un workflow en appliquant deux algorithmes classiques de regroupement de réseaux : Label Propagation et Leiden.</p>
 
 </div>
 </div>
@@ -14680,7 +14683,7 @@ The standard workflow can be summarized as:</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="graph"></a></p>
-<h3 id="2.A-Graph-object-creation-(to-top)">2.A Graph object creation (<a href="#top">to top</a>)<a class="anchor-link" href="#2.A-Graph-object-creation-(to-top)">&#182;</a></h3>
+<h3 id="2.A-Cr%C3%A9ation-des-graphes-%F0%9F%94%BC">2.A Cr&#233;ation des graphes <a href="#top">&#128316;</a><a class="anchor-link" href="#2.A-Cr%C3%A9ation-des-graphes-%F0%9F%94%BC">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -14691,9 +14694,9 @@ The standard workflow can be summarized as:</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>As a first step we need to define the network topology that will be used as playground to study diffusive phenomena.</p>
-<p><code>CDlib</code> natively supports both <a href="https://networkx.github.io"><code>networkx</code></a> and <a href="https://igraph.org/python/"><code>igraph</code></a> data structures.</p>
-<p>In our examples, for the sake of simplicity, we will use <code>networkx</code> undirected graphs.</p>
+<p>Dans un premier temps, nous devons définir la topologie du réseau qui sera utilisée comme terrain de jeu pour étudier les phénomènes diffusifs.</p>
+<p><code>CDlib</code> supporte <a href="https://networkx.github.io"><code>networkx</code></a> et <a href="https://igraph.org/python/"><code>igraph</code></a> les structures de données.</p>
+<p>Dans nos exemples, pour des raisons de simplicité, nous utiliserons <code>networkx</code> pour des graphes non orientés .</p>
 
 </div>
 </div>
@@ -14706,9 +14709,8 @@ The standard workflow can be summarized as:</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[61]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="kn">from</span> <span class="nn">cdlib</span> <span class="kn">import</span> <span class="n">algorithms</span>
-
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">cdlib</span> <span class="kn">import</span> <span class="n">algorithms</span>
+<span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">cdlib</span>
 </pre></div>
 
@@ -14725,7 +14727,7 @@ The standard workflow can be summarized as:</p>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
 <p><a id="model"></a></p>
-<h3 id="2.B-Community-Discovery-algorithm(s)-selection-and-configuration-(to-top)">2.B Community Discovery algorithm(s) selection and configuration (<a href="#top">to top</a>)<a class="anchor-link" href="#2.B-Community-Discovery-algorithm(s)-selection-and-configuration-(to-top)">&#182;</a></h3><p>After having defined the graph, we can select the algorithm(s) to partition it.</p>
+<h3 id="2.B-Algorithme(s)-du-Community-Discovery:-choix-et-configuration-%F0%9F%94%BC">2.B Algorithme(s) du Community Discovery: choix et configuration <a href="#top">&#128316;</a><a class="anchor-link" href="#2.B-Algorithme(s)-du-Community-Discovery:-choix-et-configuration-%F0%9F%94%BC">&#182;</a></h3><p>Après avoir défini le graphe, nous pouvons sélectionner le ou les algorithmes pour le partitionner.</p>
 
 </div>
 </div>
@@ -14755,8 +14757,8 @@ The standard workflow can be summarized as:</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>All Community Discovery algorithms generate as result an object that implements a concrete instance of the <code>Clustering</code> datatype.</p>
-<p>In particular, both Louvain and Label Propagation returns a <code>NodeClustering</code> object having the following propterties:</p>
+<p>Tous les algorithmes de découverte de communauté génèrent comme résultat un objet qui implémente une instance concrète du type de données <code>Clustering</code>.</p>
+<p>En particulier, Louvain et Label Propagation renvoient tous deux un objet <code>NodeClustering</code> ayant les propriétés suivantes :</p>
 
 </div>
 </div>
@@ -14769,7 +14771,8 @@ The standard workflow can be summarized as:</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">leiden_coms</span><span class="o">.</span><span class="n">method_name</span> <span class="c1"># Clustering algorithm name</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Nom de l&#39;algorithme de clustering</span>
+<span class="n">leiden_coms</span><span class="o">.</span><span class="n">method_name</span> 
 </pre></div>
 
      </div>
@@ -14810,7 +14813,8 @@ The standard workflow can be summarized as:</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">leiden_coms</span><span class="o">.</span><span class="n">method_parameters</span> <span class="c1"># Clustering parameters</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Paramètres du Clustering </span>
+<span class="n">leiden_coms</span><span class="o">.</span><span class="n">method_parameters</span> 
 </pre></div>
 
      </div>
@@ -14851,7 +14855,8 @@ The standard workflow can be summarized as:</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">leiden_coms</span><span class="o">.</span><span class="n">communities</span> <span class="c1"># Identified Clustering</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Identification du Clusering</span>
+<span class="n">leiden_coms</span><span class="o">.</span><span class="n">communities</span> 
 </pre></div>
 
      </div>
@@ -14895,7 +14900,7 @@ The standard workflow can be summarized as:</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">leiden_coms</span><span class="o">.</span><span class="n">overlap</span> <span class="c1"># Wehter the clustering is overlapping or not</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">leiden_coms</span><span class="o">.</span><span class="n">overlap</span> 
 </pre></div>
 
      </div>
@@ -14936,7 +14941,8 @@ The standard workflow can be summarized as:</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">leiden_coms</span><span class="o">.</span><span class="n">node_coverage</span> <span class="c1"># Percentage of nodes covered by the clustering</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Pourcentage de nœuds couverts par le clustering</span>
+<span class="n">leiden_coms</span><span class="o">.</span><span class="n">node_coverage</span> 
 </pre></div>
 
      </div>
@@ -14976,9 +14982,7 @@ The standard workflow can be summarized as:</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>Moreover, <code>Clustering</code> object allow also for the generation of a JSON representation of the results</p>
-<blockquote><p>Indented block</p>
-</blockquote>
+<p>De plus, les objets de <code>Clustering</code> permettent également de générer une représentation JSON des résultats.</p>
 
 </div>
 </div>
@@ -16280,22 +16284,6 @@ Scoring: FitnessResult(min=None, max=None, score=0.757232963115316, std=None)
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-     <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-     </div>
-</div>
-</div>
-</div>
-
 </div>
 </body>
 
