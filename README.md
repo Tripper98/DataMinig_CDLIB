@@ -113,7 +113,7 @@ This section should list any major frameworks/libraries used to bootstrap your p
 
 La détection des communautés dans un réseau est l'une des tâches les plus importantes de l'analyse de réseau. Dans un réseau à grande échelle, tel qu'un réseau social en ligne, nous pouvons avoir des millions de nœuds et d'arêtes. Détecter des communautés dans de tels réseaux devient une tâche herculéenne.
 
-Par conséquent, nous avons besoin d'algorithmes de détection de communautés qui peuvent partitionner le réseau en plusieurs communautés.
+Par conséquent, nous avons besoin des algorithmes de détection de communautés qui peuvent partitionner le réseau en plusieurs communautés.
 
 <p align="center">
   <img src="./images/image3.png" width="250" >
