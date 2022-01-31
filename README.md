@@ -141,8 +141,19 @@ Il existe de nombreuses techniques différentes proposées dans le domaine de la
 <!-- ROADMAP -->
 1.  Louvain Community Detection
 
-L'algorithme de détection de communauté de Louvain a été proposé à l'origine en 2008 comme une méthode rapide de dépliage de communauté pour les grands réseaux. Cette approche est basée sur la modularité, qui tente de maximiser la différence entre le nombre réel d'arêtes dans une communauté et le nombre attendu d'arêtes dans la communauté. Cependant, l'optimisation de la modularité dans un réseau est un défi NP, il faut donc utiliser des heuristiques. L'algorithme de Louvain est divisé en deux phases qui se répètent itérativement ;
+L'algorithme de détection de communauté de Louvain a été proposé à l'origine en 2008 comme une méthode rapide de dépliage de communauté pour les grands réseaux. Cette approche est basée sur la modularité, qui tente de maximiser la différence entre le nombre réel d'arêtes dans une communauté et le nombre attendu d'arêtes dans la communauté. 
 
+L'algorithme tente de maximiser son objectif en répétant ces deux phases :
+
+    1. Il affecte chaque nœud du graphe à une seule communauté. Pour chaque arête reliant le nœud u et le nœud v, l'algorithme vérifie si la fusion des communautés de u et v augmente l'objectif, et si oui, il effectue la fusion.
+    2. L'algorithme construit un nouveau graphe, où chaque communauté est représentée par un seul nœud, et le poids attribué à l'arête entre les communautés est la somme des poids de toutes les arêtes entre les nœuds fusionnés de chaque communauté.
+
+L'algorithme s'arrête lorsqu'il n'y a aucune étape qui augmente l'objectif. La sortie est un graphe induit, où les nœuds représentent les communautés.
+
+<p align="center">
+  <img src="./images/image4.png" >
+  <p style=" text-align: center" >Sous-réseau d'interactions sociales sur Twitter, usant de la méthode louvain pour détecter des "communautés"</p>
+</p>
 
 2.  Algorithme 2
 3.  Algorithme 3
@@ -151,26 +162,39 @@ L'algorithme de détection de communauté de Louvain a été proposé à l'origi
 
 ## Interet de CDLib
 
-<!-- ACKNOWLEDGMENTS -->
-<!-- ## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#top">back to top</a>)</p> -->
+Bien que de nombreuses méthodes et algorithmes aient été proposés pour résoudre un problème de "Community Detection", ainsi que des questions connexes telles que leur évaluation et leur comparaison, peu d'entre eux sont intégrés dans un cadre logiciel commun, ce qui rend leur utilisation, leur étude et leur comparaison difficiles et fastidieuses.
 
 
+Seule une poignée des méthodes les plus célèbres sont disponibles dans des bibliothèques génériques telles que NetworkX et Igraph, et l'exécution de toute autre méthode nécessite de :
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+ 1. Trouver une implémentation fiable.
+ 2. Apprendre à l'utiliser.
+ 3. Transformer le graphique à étudier dans le format demandé.
+ 4. Exporter et transformer le clustering résultant dans un format adapté aux besoins de l'utilisateur.
+
+
+Ce processus laborieux est probablement la cause de deux fortes faiblesses du domaine de la `Community Detection` :
+
+ * Malgré le grand nombre d'algorithmes publiés chaque année, la plupart des nouveaux algorithmes proposés ne sont comparés qu'à quelques méthodes classiques.
+
+* Les praticiens n'essaient presque jamais différentes méthodes sur leurs données, alors qu'il est bien connu dans le domaine que différentes méthodes fournissent souvent des solutions très différentes.
+
+Pour faire face à ces problème, nous introduisons une nouvelle bibliothèque - `CDLib` - conçue pour sélectionner/appliquer facilement des méthodes de découverte de communautés sur des ensembles de données de réseau, évaluer/comparer le clustering obtenu et visualiser les résultats.
+
+CDLIB est utilisé pour simplifier la définition/exécution/évaluation de l'analyse de la Community detection. 
+
+Les principales caractéristiques de la bibliothèque sont les suivantes.
+
+* Implémentation d'un large éventail d'algorithmes pour la détection de communautés, y compris les méthodes de chevauchement, les méthodes floues et les regroupements de bords.
+
+* Représentation standardisée pour les graphes et les regroupements.
+
+* Des outils pour comparer efficacement les méthodes en faisant varier leurs paramètres, ou les méthodes entre elles.
+
+* Implémentation d'une variété de scores et de fonctions de qualité pour évaluer la qualité des communautés individuelles et des regroupements entiers.
+
+* Des outils de visualisation pour comparer et analyser les clusters obtenus par une ou plusieurs méthodes.
+
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
